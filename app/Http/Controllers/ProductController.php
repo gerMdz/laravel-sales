@@ -8,7 +8,7 @@ class ProductController extends Controller
 {
     public function index(): string
     {
-        return 'Esta es la lista de productos from CONTROLLER';
+        return view('products.index');
     }
 
     public function create(): string
@@ -23,7 +23,7 @@ class ProductController extends Controller
 
     public function show($product): string
     {
-        return "Retorna un producto con id $product From CONTROLLER" ;
+        return view('products.show');
     }
 
     public function edit($product): string
