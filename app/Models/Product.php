@@ -16,5 +16,4 @@ class Product extends Model
         'stock',
         'status',
     ];
-
 }
