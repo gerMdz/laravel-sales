@@ -31,8 +31,10 @@ class ProductController extends Controller
 //        $product = DB::table('products')->where('id', $product)->first();
 //        $product = DB::table('products')->find($product);
 //        dd($product);
-        return $product;
-        return view('products.show');
+
+        return view('products.show')->with([
+            'product' => $product
+        ]);
     }
 
     public function edit($product): string

@@ -16,4 +16,9 @@ class Product extends Model
         'stock',
         'status',
     ];
+
+    protected $casts = [
+        'id' => 'string'
+    ];
+
 }

@@ -11,10 +11,12 @@
 </head>
 <body>
 <h3>
-    Jabón (1)
+    {{ $product->title }} <small>({{ $product->id  }})</small>
 </h3>
-<p>
-    Mejor Jabón
-</p>
+<p>{{ $product->description }}</p>
+<p>   {{ $product->precio }} </p>
+<p>   {{ $product->stock }} </p>
+<p>   {{ $product->status }} </p>
+
 </body>
 </html>
