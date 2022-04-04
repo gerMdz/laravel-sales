@@ -10,9 +10,9 @@ class ProductController extends Controller
 {
     public function index(): string
     {
-        $products = Product::all();
-        dd($products);
-        return view('products.index');
+        return view('products.index')->with([
+            'products' => $products = Product::all(),
+        ]);
     }
 
     public function create(): string
