@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -22,7 +24,17 @@ class ProductController extends Controller
 
     public function store()
     {
-        dd('aqui');
+
+//        $product = Product::create([
+//            'id'=> Str::uuid()->toString(),
+//            'title' => request()->title,
+//            'description' => request()->description,
+//            'price' => request()->price,
+//            'stock' => request()->stock,
+//            'status' => request()->status,
+//        ]);
+        return Product::create(request()->all());
+
     }
 
     public function show($product): string
@@ -39,16 +51,16 @@ class ProductController extends Controller
 
     public function edit($product): string
     {
-        return "Un form para editar el producto $product From CONTROLLER" ;
+        return "Un form para editar el producto $product From CONTROLLER";
     }
 
     public function update($product): string
     {
-        return "Un form para updater el producto $product From CONTROLLER" ;
+        return "Un form para updater el producto $product From CONTROLLER";
     }
 
     public function destroy($product): string
     {
-        return "Un form para destroyer el producto $product From CONTROLLER" ;
+        return "Un form para destroyer el producto $product From CONTROLLER";
     }
 }
