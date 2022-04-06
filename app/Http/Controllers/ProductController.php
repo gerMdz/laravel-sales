@@ -17,12 +17,12 @@ class ProductController extends Controller
 
     public function create(): string
     {
-        return 'Este es el form para crear productos from CONTROLLER';
+        return view('products.create');
     }
 
     public function store()
     {
-
+        dd('aqui');
     }
 
     public function show($product): string
