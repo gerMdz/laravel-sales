@@ -24,17 +24,7 @@ class ProductController extends Controller
 
     public function store()
     {
-
-//        $product = Product::create([
-//            'id'=> Str::uuid()->toString(),
-//            'title' => request()->title,
-//            'description' => request()->description,
-//            'price' => request()->price,
-//            'stock' => request()->stock,
-//            'status' => request()->status,
-//        ]);
         return Product::create(request()->all());
-
     }
 
     public function show($product): string
