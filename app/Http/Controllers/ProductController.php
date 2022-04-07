@@ -51,12 +51,20 @@ class ProductController extends Controller
 
     public function edit($product): string
     {
-        return "Un form para editar el producto $product From CONTROLLER";
+
+        return view('products.edit')->with([
+           'product' => Product::findOrFail($product)
+        ]);
     }
 
     public function update($product): string
     {
-        return "Un form para updater el producto $product From CONTROLLER";
+        $product = Product::findOrFail($product);
+
+        $product->update(request()->all());
+        return view('products.show')->with([
+            'product' => $product
+        ]);
     }
 
     public function destroy($product): string
