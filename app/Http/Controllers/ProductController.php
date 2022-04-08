@@ -13,7 +13,7 @@ class ProductController extends Controller
     public function index(): string
     {
         return view('products.index')->with([
-            'products' => $products = Product::all(),
+            'products' => Product::all(),
         ]);
     }
 
@@ -57,8 +57,10 @@ class ProductController extends Controller
         ]);
     }
 
-    public function destroy($product): string
+    public function destroy($product)
     {
-        return "Un form para destroyer el producto $product From CONTROLLER";
+        $product = Product::findOrFail($product);
+        $product->delete();
+        return $product;
     }
 }
