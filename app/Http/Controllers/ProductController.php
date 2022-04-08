@@ -24,7 +24,10 @@ class ProductController extends Controller
 
     public function store()
     {
-        return Product::create(request()->all());
+        $product = Product::create(request()->all());
+//        return redirect()->back();
+//        return redirect()->action([ProductController::class, 'index']);
+        return redirect()->route('products.index');
     }
 
     public function show($product): string
@@ -61,6 +64,6 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($product);
         $product->delete();
-        return $product;
+        return redirect()->route('products.index');
     }
 }
