@@ -42,12 +42,8 @@
                                   action="{{route('products.destroy', ['product' => $product->id])}}">
                                 @csrf
                                 @method('DELETE')
-
-
                                 <button class="btn btn-danger" type="submit"> Borrar</button>
-
                             </form>
-
                         </td>
                     </tr>
                 @endforeach
