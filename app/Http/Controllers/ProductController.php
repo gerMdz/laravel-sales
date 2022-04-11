@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
@@ -22,11 +23,14 @@ class ProductController extends Controller
         return view('products.create');
     }
 
-    public function store()
+    public function store(): RedirectResponse
     {
+        if (request()->status == 'available' && request()->stock == 0) {
+            session()->flash('error', 'If available must hace stock');
+            return redirect()->back();
+        }
+
         $product = Product::create(request()->all());
-//        return redirect()->back();
-//        return redirect()->action([ProductController::class, 'index']);
         return redirect()->route('products.index');
     }
 
@@ -60,7 +64,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function destroy($product)
+    public function destroy($product): RedirectResponse
     {
         $product = Product::findOrFail($product);
         $product->delete();
