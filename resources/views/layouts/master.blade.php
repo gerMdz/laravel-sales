@@ -400,6 +400,7 @@
     </style>
 </head>
 <body class="antialiased">
+{{--@dump($errors)--}}
 @if (session()->has('error'))
     <div class="alert alert-danger">
         {{session()->get('error') }}
