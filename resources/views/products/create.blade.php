@@ -7,16 +7,16 @@
         @csrf
         <div class="form-row">
             <label for="title">Title
-                <input type="text" id="title" name="title" class="form-control" required>
+                <input type="text" id="title" name="title" class="form-control" >
             </label>
             <label for="description">Description
-                <input type="text" id="description" name="description" class="form-control" required>
+                <input type="text" id="description" name="description" class="form-control" >
             </label>
             <label for="price">Precio
-                <input type="number" name="price" id="price" min="1.00" step="0.01" class="form-control" required>
+                <input type="number" name="price" id="price" min="1.00" step="0.01" class="form-control" >
             </label>
             <label for="stock">Stock
-                <input type="number" name="stock" min="0" id="stock" class="form-control" required>
+                <input type="number" name="stock" min="0" id="stock" class="form-control" >
             </label>
             <label for="status">Status</label>
                 <select name="status" id="status" class="custom-select">
