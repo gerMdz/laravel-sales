@@ -30,9 +30,11 @@ class ProductController extends Controller
           'description' => ['required','max:1000'],
           'price' => ['required','min:1'],
           'stock' => ['required','min:0'],
-          'status' => ['required','in:available, unavailable'],
+          'status' => ['required','in:available,unavailable'],
         ];
+
         request()->validate($rules);
+
 
         if (request()->status == 'available' && request()->stock == 0) {
             session()->flash('error', 'If available must hace stock');
@@ -42,6 +44,7 @@ class ProductController extends Controller
         }
 
         $product = Product::create(request()->all());
+        session()->flash('success', "El nuevo producto {$product->title} con id {$product->id} fue creado");
         return redirect()->route('products.index');
     }
 
