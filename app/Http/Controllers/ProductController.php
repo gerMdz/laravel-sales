@@ -35,17 +35,20 @@ class ProductController extends Controller
 
         request()->validate($rules);
 
-
         if (request()->status == 'available' && request()->stock == 0) {
-            session()->flash('error', 'If available must hace stock');
             return redirect()
                 ->back()
-                ->withInput(request()->all());
+                ->withInput(request()->all())
+                ->withErrors('If available must hace stock')
+                ;
         }
 
         $product = Product::create(request()->all());
         session()->flash('success', "El nuevo producto {$product->title} con id {$product->id} fue creado");
-        return redirect()->route('products.index');
+        return redirect()
+            ->route('products.index')
+            ->withSuccess("El nuevo producto {$product->title} con id {$product->id} fue creado correctamente")
+            ;
     }
 
     public function show($product): string
@@ -82,15 +85,18 @@ class ProductController extends Controller
         $product = Product::findOrFail($product);
 
         $product->update(request()->all());
-        return view('products.show')->with([
-            'product' => $product
-        ]);
+        return redirect()
+            ->route('products.show', ['product' => $product])
+            ->withSuccess("El nuevo producto {$product->title} con id {$product->id} fue actualizado correctamente")
+            ;
     }
 
     public function destroy($product): RedirectResponse
     {
         $product = Product::findOrFail($product);
         $product->delete();
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')
+            ->withSuccess("El nuevo producto {$product->title} con id {$product->id} fue borrado correctamente")
+            ;
     }
 }
