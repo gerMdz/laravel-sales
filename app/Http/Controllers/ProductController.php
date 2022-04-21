@@ -54,9 +54,6 @@ class ProductController extends Controller
     public function show($product): string
     {
         $product = Product::findOrFail($product);
-//        $product = DB::table('products')->where('id', $product)->first();
-//        $product = DB::table('products')->find($product);
-//        dd($product);
 
         return view('products.show')->with([
             'product' => $product
