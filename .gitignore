@@ -14,3 +14,5 @@ yarn-error.log
 /.idea/vcs.xml
 /.idea/laravel-query-settings.xml
 /.idea/misc.xml
+/.idea/php.xml
+.idea/php.xml
