@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <h3>Lista de productos</h3>
-    <a class="btn btn-success btn-sm" href="{{ route('products.create') }}"> Crear producto </a>
+    <a class="btn btn-success btn-sm mb-3" href="{{ route('products.create') }}"> Crear producto </a>
     @empty($products))
     <div class="alert alert-warning">
         <h2>
@@ -38,7 +38,7 @@
                             <a class="btn btn-warning" href="{{ route('products.edit', ['product' => $product->id]) }}">
                                 Editar
                             </a>
-                            <form method="POST"
+                            <form method="POST" class="d-inline"
                                   action="{{route('products.destroy', ['product' => $product->id])}}">
                                 @csrf
                                 @method('DELETE')

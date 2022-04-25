@@ -81,6 +81,7 @@
         </nav>
 
         <main class="py-4">
+            <div class="container-fluid">
             @if (session()->has('success'))
                 <div class="alert alert-success">
                     {{session()->get('success') }}
@@ -99,6 +100,7 @@
                 </div>
             @endif
             @yield('content')
+        </div>
         </main>
     </div>
 </body>

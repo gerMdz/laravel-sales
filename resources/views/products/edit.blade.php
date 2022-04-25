@@ -36,8 +36,8 @@
             </select>
 
         </div>
-        <div class="form-row">
-            <button type="submit" class="btn btn-primary btn-lg"> Editar producto</button>
+        <div class="form-row mt-3">
+            <button type="submit" class="btn btn-primary btn-lg "> Editar producto</button>
         </div>
 
     </form>
