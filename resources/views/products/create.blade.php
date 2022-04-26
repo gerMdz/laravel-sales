@@ -19,7 +19,7 @@
                 <input type="number" name="stock" min="0" id="stock" class="form-control"  value="{{ old('stock') }}" required>
             </label>
             <label for="status">Status</label>
-                <select name="status" id="status" class="custom-select" required>
+                <select name="status" id="status" class="form-control custom-select" required>
                 <option value="" selected>Select ...</option>
                 <option {{ old('status') == 'available' ? 'selected': '' }} value="available">Available</option>
                 <option {{ old('status') == 'unavailable' ? 'selected': '' }} value="unavailable">Unavailable</option>
