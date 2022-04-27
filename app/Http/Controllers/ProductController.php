@@ -57,24 +57,21 @@ class ProductController extends Controller
             ;
     }
 
-    public function show($product): string
+    public function show(Product $product): string
     {
-        $product = Product::findOrFail($product);
-
         return view('products.show')->with([
             'product' => $product
         ]);
     }
 
-    public function edit($product): string
+    public function edit(Product $product): string
     {
-
         return view('products.edit')->with([
-            'product' => Product::findOrFail($product)
+            'product' => $product
         ]);
     }
 
-    public function update($product): string
+    public function update(Product $product): string
     {
         $rules = [
             'title' => ['required','max:255'],
@@ -85,8 +82,6 @@ class ProductController extends Controller
         ];
         request()->validate($rules);
 
-        $product = Product::findOrFail($product);
-
         $product->update(request()->all());
         return redirect()
             ->route('products.show', ['product' => $product])
@@ -94,9 +89,8 @@ class ProductController extends Controller
             ;
     }
 
-    public function destroy($product): RedirectResponse
+    public function destroy(Product $product): RedirectResponse
     {
-        $product = Product::findOrFail($product);
         $product->delete();
         return redirect()->route('products.index')
             ->withSuccess("El nuevo producto {$product->title} con id {$product->id} fue borrado correctamente")
