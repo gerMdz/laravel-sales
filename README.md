@@ -56,6 +56,19 @@ php artisan migrate:fresh
 php artisan migrate:fresh --seed
 > Migra DB creando la base desde cero y puebla las tablas
 
+php artisan tinker
+
+´´´
+$instance = App\Models\Cart::factory()->make()
+
+$instance = App\Models\Cart::factory()->create()
+
+$instance = App\Models\Image::factory()->create()
+
+$instance = App\Models\Image::factory()->user()->create()
+´´´
+
+
 
 ## Contributing
 
