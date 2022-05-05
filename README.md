@@ -58,7 +58,8 @@ php artisan migrate:fresh --seed
 
 php artisan tinker
 
-´´´
+```
+
 $instance = App\Models\Cart::factory()->make()
 
 $instance = App\Models\Cart::factory()->create()
@@ -66,7 +67,7 @@ $instance = App\Models\Cart::factory()->create()
 $instance = App\Models\Image::factory()->create()
 
 $instance = App\Models\Image::factory()->user()->create()
-´´´
+```
 
 
 
