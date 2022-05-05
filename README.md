@@ -67,6 +67,12 @@ $instance = App\Models\Cart::factory()->create()
 $instance = App\Models\Image::factory()->create()
 
 $instance = App\Models\Image::factory()->user()->create()
+
+$payment = App\Models\Payment::factory()->make(['order_id' => $order->id]);
+
+$order->payment
+
+$payment->order
 ```
 
 

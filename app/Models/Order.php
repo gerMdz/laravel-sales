@@ -12,4 +12,9 @@ class Order extends Model
     protected $fillable = [
         'status',
     ];
+
+    public function payment()
+    {
+        return $this->hasOne(Payment::class);
+    }
 }
