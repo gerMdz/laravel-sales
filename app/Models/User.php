@@ -23,6 +23,11 @@ class User extends Authenticatable
 //        'admin_since'
     ];
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'customer_id');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
