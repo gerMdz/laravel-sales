@@ -24,7 +24,7 @@
                        value="{{old('stock') ?? $product->stock }}" required>
             </label>
             <label for="status">Status</label>
-            <select name="status" id="status" class="custom-select" required>
+            <select name="status" id="status" class="form-select" required>
                 <option
                     {{ old('status') == 'available' ? 'selected': ($product->status == 'available' ? 'selected': '') }} value="available">
                     Available

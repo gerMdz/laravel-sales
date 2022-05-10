@@ -20,7 +20,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+//        'admin_since'
     ];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'customer_id');
+    }
 
     /**
      * The attributes that should be hidden for arrays.
@@ -39,5 +45,13 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    /**
+     *
+     * @var array
+     */
+    protected $dates = [
+        'admin_since'
     ];
 }

@@ -44,6 +44,39 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 - **[DevSquad](https://devsquad.com)**
 - **[OP.GG](https://op.gg)**
 
+
+## CMD
+
+php artisan migrate
+> Solo migra las tablas que no existen
+
+php artisan migrate:fresh
+> Migra DB creando la base desde cero
+
+php artisan migrate:fresh --seed
+> Migra DB creando la base desde cero y puebla las tablas
+
+php artisan tinker
+
+```
+
+$instance = App\Models\Cart::factory()->make()
+
+$instance = App\Models\Cart::factory()->create()
+
+$instance = App\Models\Image::factory()->create()
+
+$instance = App\Models\Image::factory()->user()->create()
+
+$payment = App\Models\Payment::factory()->make(['order_id' => $order->id]);
+
+$order->payment
+
+$payment->order
+```
+
+
+
 ## Contributing
 
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
@@ -59,3 +92,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# laravel-sales
