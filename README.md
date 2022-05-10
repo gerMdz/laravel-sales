@@ -56,6 +56,10 @@ php artisan migrate:fresh
 php artisan migrate:fresh --seed
 > Migra DB creando la base desde cero y puebla las tablas
 
+php artisan make:migration CreateCartProductTable
+> Crea migración de tablas pivotes o intermedias, se escribe en orden alfabético
+
+
 php artisan tinker
 
 ```
@@ -73,6 +77,17 @@ $payment = App\Models\Payment::factory()->make(['order_id' => $order->id]);
 $order->payment
 
 $payment->order
+
+$order = App\Models\Order::factory()->create(['customer_id' => $user->id]);
+
+$product = App\Models\Product::first();
+
+$order->products()->attach([1 => ['quantity' => 4], 2 => ['quantity' => 5], 3 => ['quantity' => 6], 5 => ['quantity' => 7] ]);
+
+$order = $order->fresh();
+
+$order->products;
+
 ```
 
 
