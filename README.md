@@ -88,6 +88,8 @@ $order = $order->fresh();
 
 $order->products;
 
+$order = $user->orders()->save(App\Models\Order::factory()->make());
+
 ```
 
 
