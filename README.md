@@ -59,6 +59,9 @@ php artisan migrate:fresh --seed
 php artisan make:migration CreateCartProductTable
 > Crea migración de tablas pivotes o intermedias, se escribe en orden alfabético
 
+php artisan make:migration 'name-action' --table='name-table'
+> Crea una migración que permite modificar una tabla con 'php artisan migrate'
+
 
 php artisan tinker
 
