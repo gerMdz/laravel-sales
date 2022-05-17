@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Product extends Model
 {
@@ -19,19 +20,21 @@ class Product extends Model
         'status',
     ];
 
-    public function carts(): BelongsToMany
+    public function carts(): MorphToMany
     {
-        return $this->belongsToMany(Cart::class)->withPivot('quantity');
+        return $this->morphedByMany(Cart::class, 'productable')->withPivot('quantity');
     }
 
-    public function orders(): BelongsToMany
+    public function orders(): MorphToMany
     {
-        return $this->belongsToMany(Order::class)->withPivot('quantity');
+        return $this->morphedByMany(Order::class, 'productable')->withPivot('quantity');
     }
 
     public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+
+
 
 }
