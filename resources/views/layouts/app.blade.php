@@ -50,6 +50,10 @@
                         <a href="{{ route('products.index') }}"
                            class="nav-link">Productos</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('carts.index') }}"
+                           class="nav-link">Carrito</a>
+                    </li>
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">

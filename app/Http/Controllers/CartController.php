@@ -5,17 +5,35 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCartRequest;
 use App\Http\Requests\UpdateCartRequest;
 use App\Models\Cart;
+use App\Services\CartService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 class CartController extends Controller
 {
+
+    private $cartService;
+
+    /**
+     * @param CartService $cartService
+     */
+    public function __construct(CartService $cartService)
+    {
+        $this->cartService = $cartService;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index()
     {
-        //
+          return view('carts.index')->with([
+              'cart' => $this->cartService->getFromCookieOrCreate(),
+          ]);
+
     }
 
     /**
