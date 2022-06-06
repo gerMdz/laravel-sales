@@ -12,12 +12,25 @@
         </h5>
         <p class="card-text"> {{$product->description}} </p>
         <p class="card-text"><strong> {{$product->stock}} restantes</strong></p>
-        <form class="d-inline" method="POST"
-              action="{{route('products.carts.store', ['product' => $product->id])}}">
-            @csrf
-            <button type="submit" class="btn btn-success">Agregar al carrito</button>
+        @if(isset($cart))
+            <form class="d-inline" method="POST"
+                  action="{{route('products.carts.destroy',
+['cart'=> $cart->id, 'product' => $product->id]
+)}}">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-warning">Eliminar del carrito</button>
 
-        </form>
+            </form>
+        @else
+
+            <form class="d-inline" method="POST"
+                  action="{{route('products.carts.store', ['product' => $product->id])}}">
+                @csrf
+                <button type="submit" class="btn btn-success">Agregar al carrito</button>
+
+            </form>
+        @endif
     </div>
 </div>
 
