@@ -52,7 +52,8 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('carts.index') }}"
-                           class="nav-link">Carrito</a>
+                           @inject('cartService','App\Services\CartService')
+                           class="nav-link">Carrito <sup>({{$cartService->countProducts()}})</sup></a>
                     </li>
                     @guest
                         @if (Route::has('login'))

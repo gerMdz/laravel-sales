@@ -9,10 +9,15 @@ class CartService
 {
     protected const COOKIE_NAME = 'cart';
 
-    public function getFromCookieOrCreate()
+    public function getFromCookie()
     {
         $cartId = Cookie::get(self::COOKIE_NAME);
-        $cart = Cart::find($cartId);
+        return Cart::find($cartId);
+    }
+
+    public function getFromCookieOrCreate()
+    {
+        $cart = $this->getFromCookie();
         return $cart ?? Cart::create();
     }
 
@@ -20,4 +25,14 @@ class CartService
     {
         return Cookie::make(self::COOKIE_NAME, $cart->id, 7 * 24 * 60);
     }
+
+    public function countProducts(): int
+    {
+        $cart = $this->getFromCookie();
+        if ($cart != null) {
+            return $cart->products->pluck('pivot.quantity')->sum();
+        }
+        return 0;
+    }
+
 }
