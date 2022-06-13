@@ -39,7 +39,7 @@ class ProductCartController extends Controller
         $quantity = $cart->products()
                 ->find($product->id)
                 ->pivot
-                ->quntity ?? 0;
+                ->quantity ?? 0;
         $cart->products()->syncWithoutDetaching([
             $product->id => ['quantity' => $quantity + 1]
         ]);

@@ -9,6 +9,9 @@
                 No hay productos en su carrito
             </div>
         @else
+            <a href="{{route('orders.create')}}" class="btn btn-success">
+                Iniciar Orden
+            </a>
             <div class="row">
                 @foreach($cart->products as $product)
                     <div class="col-3">
