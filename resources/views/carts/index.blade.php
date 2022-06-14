@@ -9,6 +9,7 @@
                 No hay productos en su carrito
             </div>
         @else
+            <h4 class="text-center"> Total carrito $ {{$cart->total}} </h4>
             <a href="{{route('orders.create')}}" class="btn btn-success">
                 Iniciar Orden
             </a>

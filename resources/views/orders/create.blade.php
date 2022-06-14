@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <h3>Lista de productos</h3>
+    <h4 class="text-center">
+        <strong>Gran total: {{ $cart->total }}</strong>
+    </h4>
 
 
     <div class="table-responsive">
@@ -25,7 +28,7 @@
                     <td>{{ $product->pivot->quantity }}</td>
                     <td>
                         <strong>
-                            {{ $product->pivot->quantity * $product->price }}
+                            $ {{ $product->total }}
                         </strong>
                     </td>
 {{--                    <td>--}}
@@ -45,6 +48,14 @@
                 </tr>
             @endforeach
             </tbody>
+            <tfoot>
+            <tr>
+                <th> </th>
+                <th> </th>
+                <th> </th>
+                <th> $  {{$cart->total}}</th>
+            </tr>
+            </tfoot>
         </table>
     </div>
 

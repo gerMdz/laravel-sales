@@ -13,6 +13,7 @@
         <p class="card-text"> {{$product->description}} </p>
         <p class="card-text"><strong> {{$product->stock}} restantes</strong></p>
         @if(isset($cart))
+            <p class="card-text"><strong> {{$product->pivot->quantity}} en el carrito </strong>$ ({{$product->total}})</p>
             <form class="d-inline" method="POST"
                   action="{{route('products.carts.destroy',
 ['cart'=> $cart->id, 'product' => $product->id]
