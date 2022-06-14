@@ -114,4 +114,3 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 # laravel-sales
 
 Hay que agregar los plunk y computados, está muy bueno
-
