@@ -10,6 +10,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 
 class OrderController extends Controller
 {
@@ -18,6 +19,7 @@ class OrderController extends Controller
     public function __construct(CartService $cartService)
     {
         $this->cartService = $cartService;
+        $this->middleware('auth');
     }
 
     /**
@@ -42,56 +44,24 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\StoreOrderRequest $request
-     * @return \Illuminate\Http\Response
+     * @param StoreOrderRequest $request
+     * @return void
      */
     public function store(StoreOrderRequest $request)
     {
-        //
+        $user = $request->user();
+        $order = $user->orders()->create([
+            'status' => 'pending'
+        ]);
+
+        $cart = $this->cartService->getFromCookie();
+        $cartProductsWithQuantity = $cart->products->mapWithKeys(function ($product) {
+            $element[$product->id] = ['quantity' => $product->pivot->quantity];
+            return $element;
+        });
+        $order->products()->attach($cartProductsWithQuantity->toArray());
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Order $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Order $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \App\Http\Requests\UpdateOrderRequest $request
-     * @param \App\Models\Order $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateOrderRequest $request, Order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Order $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
-    {
-        //
-    }
 }
