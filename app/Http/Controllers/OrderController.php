@@ -45,7 +45,7 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StoreOrderRequest $request
-     * @return void
+     * @return RedirectResponse
      */
     public function store(StoreOrderRequest $request)
     {
@@ -60,6 +60,8 @@ class OrderController extends Controller
             return $element;
         });
         $order->products()->attach($cartProductsWithQuantity->toArray());
+
+        return redirect()->route('orders.payments.create', ['order' => $order]);
 
     }
 
