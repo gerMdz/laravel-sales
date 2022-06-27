@@ -1,22 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Panel;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Ramsey\Uuid\Uuid;
-use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     public function index(): string
     {
@@ -32,8 +24,6 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request): RedirectResponse
     {
-
-
 
         $product = Product::create($request->validated());
         session()->flash('success', "El nuevo producto {$product->title} con id {$product->id} fue creado");
