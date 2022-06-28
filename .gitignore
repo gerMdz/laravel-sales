@@ -16,3 +16,4 @@ yarn-error.log
 /.idea/misc.xml
 /.idea/php.xml
 .idea/php.xml
+/.idea/symfony2.xml
