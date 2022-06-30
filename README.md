@@ -95,6 +95,11 @@ $order = $user->orders()->save(App\Models\Order::factory()->make());
 
 ```
 
+### Helper Laravel
+```
+@if (optional(objet))
+```
+
 
 ## Contributing
 

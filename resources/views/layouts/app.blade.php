@@ -46,10 +46,12 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ms-auto">
                     <!-- Authentication Links -->
-                    <li class="nav-item">
-                        <a href="{{ route('products.index') }}"
-                           class="nav-link">Productos</a>
-                    </li>
+                    @if(optional(auth()->user())->isAdmin())
+                        <li class="nav-item">
+                            <a href="{{ route('panel') }}"
+                               class="nav-link">Panel</a>
+                        </li>
+                    @endif
                     <li class="nav-item">
                         <a href="{{ route('carts.index') }}"
                            @inject('cartService','App\Services\CartService')
