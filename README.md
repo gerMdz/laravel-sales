@@ -100,6 +100,9 @@ $order = $user->orders()->save(App\Models\Order::factory()->make());
 @if (optional(objet))
 ```
 
+### Global scope
+
+
 
 ## Contributing
 
