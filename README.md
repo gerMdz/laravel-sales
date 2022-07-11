@@ -101,6 +101,29 @@ $order = $user->orders()->save(App\Models\Order::factory()->make());
 ```
 
 ### Global scope
+```
+protected static function booted()
+{
+static::addGlobalScope(new AvailableScope);
+}
+```
+
+### N+1
+```
+protected static function booted()
+{
+static::addGlobalScope(new AvailableScope);
+}
+```
+
+### Ver la consulta realizada
+```
+> En el controlador
+    \DB::connection()->enableQueryLog();
+> En la vista
+    @dd(\DB::getQueryLog()) 
+    @dump($products)
+```
 
 
 
