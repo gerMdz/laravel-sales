@@ -14,6 +14,7 @@
                     </div>
                 @endforeach
             </div>
+
         @endempty
 
         <h1>Bienvenidos</h1>

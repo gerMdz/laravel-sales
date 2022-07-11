@@ -14,7 +14,7 @@ class ProductController extends Controller
     public function index(): string
     {
         return view('products.index')->with([
-            'products' => PanelProduct::all(),
+            'products' => PanelProduct::without('images')->get()
         ]);
     }
 
