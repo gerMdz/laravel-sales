@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class OrderPaymentController extends Controller
 {
@@ -38,25 +39,28 @@ class OrderPaymentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param Order $order
      * @return Response
      */
-    public function store(Request $request, Order $order)
+    public function store(Request $request, Order $order): Response
     {
         //PaymentService::handlePayment()
-        $this->cartService->getFromCookie()->products()->detach();
-        $order->payment()->create([
-           'amount' => $order->total,
-           'payed_at' => now(),
-        ]);
-        $order->status = 'payed';
-        $order->save();
+        return DB::transaction(function () use ($order) {
 
-        return redirect()
-            ->route('main')
-            ->withSuccess("Hemos recibido tu pago por \${$order->total}");
+            $this->cartService->getFromCookie()->products()->detach();
+            $order->payment()->create([
+                'amount' => $order->total,
+                'payed_at' => now(),
+            ]);
+            $order->status = 'payed';
+            $order->save();
+
+            return redirect()
+                ->route('main')
+                ->withSuccess("Hemos recibido tu pago por \${$order->total}");
+
+        }, 5);
     }
-
 
 }
