@@ -7,11 +7,19 @@ use Illuminate\Support\Facades\Cookie;
 
 class CartService
 {
-    protected const COOKIE_NAME = 'cart';
+    protected  $cookieName;
+    protected  $cookieExpiration;
+
+    public function __construct()
+    {
+        $this->cookieName = config('cart.cookie.name');
+        $this->cookieExpiration= config('cart.cookie.expiration');
+
+    }
 
     public function getFromCookie()
     {
-        $cartId = Cookie::get(self::COOKIE_NAME);
+        $cartId = Cookie::get($this->cookieName);
         return Cart::find($cartId);
     }
 
@@ -23,7 +31,7 @@ class CartService
 
     public function makeCookie(Cart $cart)
     {
-        return Cookie::make(self::COOKIE_NAME, $cart->id, 7 * 24 * 60);
+        return Cookie::make($this->cookieName, $cart->id, $this->cookieExpiration);
     }
 
     public function countProducts(): int
