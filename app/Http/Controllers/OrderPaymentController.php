@@ -41,9 +41,9 @@ class OrderPaymentController extends Controller
      *
      * @param Request $request
      * @param Order $order
-     * @return Response
+     * @return mixed
      */
-    public function store(Request $request, Order $order): Response
+    public function store(Request $request, Order $order)
     {
         //PaymentService::handlePayment()
         return DB::transaction(function () use ($order) {

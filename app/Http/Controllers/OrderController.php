@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class OrderController extends Controller
 {
@@ -56,9 +57,20 @@ class OrderController extends Controller
 
             $cart = $this->cartService->getFromCookie();
             $cartProductsWithQuantity = $cart->products->mapWithKeys(function ($product) {
-                $element[$product->id] = ['quantity' => $product->pivot->quantity];
+
+                $quantity = $product->pivot->quantity;
+                if ($product->stock < $quantity) {
+                    throw ValidationException::withMessages([
+                        'producto' => "No hay suficiente stock del producto {$product->title}"
+                    ]);
+                }
+
+                $product->decrement('stock', $quantity);
+                $element[$product->id] = ['quantity' => $quantity];
+
                 return $element;
             });
+
             $order->products()->attach($cartProductsWithQuantity->toArray());
 
             return redirect()->route('orders.payments.create', ['order' => $order]);

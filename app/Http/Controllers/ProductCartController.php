@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Validation\ValidationException;
 
 
 class ProductCartController extends Controller
@@ -31,8 +32,9 @@ class ProductCartController extends Controller
      * @param Request $request
      * @param Product $product
      * @return RedirectResponse
+     * @throws ValidationException
      */
-    public function store(Request $request, Product $product)
+    public function store(Request $request, Product $product): RedirectResponse
     {
         $cart = $this->cartService->getFromCookieOrCreate();
 
@@ -40,6 +42,12 @@ class ProductCartController extends Controller
                 ->find($product->id)
                 ->pivot
                 ->quantity ?? 0;
+        if($product->stock < $quantity + 1){
+            throw ValidationException::withMessages([
+                'producto' => "No hay suficiente stock del producto {$product->title}"
+            ]);
+        }
+
         $cart->products()->syncWithoutDetaching([
             $product->id => ['quantity' => $quantity + 1]
         ]);
