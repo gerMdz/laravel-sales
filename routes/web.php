@@ -6,6 +6,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderPaymentController;
 use App\Http\Controllers\ProductCartController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MainController::class, 'index'])->name('main');
+
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
 Route::resource('products.carts', ProductCartController::class)->only(['store', 'destroy']);
 Route::resource('carts', CartController::class)->only('index');
