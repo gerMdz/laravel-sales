@@ -73,4 +73,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->admin_since != null
             && $this->admin_since->lessThanOrEqualTo(now());
     }
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
 }
