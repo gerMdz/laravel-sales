@@ -15,5 +15,16 @@ class PanelProduct extends Product
 //        static::addGlobalScope();
     }
 
+    public function getForeignKey(): string
+    {
+        $parent = get_parent_class($this);
+        return (new $parent)->getForeignKey();
+    }
+
+    public function getMorphClass(): string
+    {
+        $parent = get_parent_class($this);
+        return (new $parent)->getMorphClass();
+    }
 
 }

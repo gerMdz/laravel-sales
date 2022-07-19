@@ -3,7 +3,9 @@
     <h3>
         Editar un producto
     </h3>
-    <form action="{{ route('products.update', ['product' => $product->id]) }}" method="POST">
+    <form action="{{ route('products.update', ['product' => $product->id]) }}" method="POST"
+          enctype="multipart/form-data"
+    >
         @csrf
         @method('PUT')
         <div class="form-row">
@@ -36,6 +38,24 @@
             </select>
 
         </div>
+        <div class="form-row">
+            <label class="col-md-4 col-form-label text-md-end">
+                {{ __('Imagen') }}
+            </label>
+
+            <div class="col-md-6">
+                <div class="custom-file">
+                    <input type="file" accept="image/*" name="images[]"
+                           class="form-control custom-file-input" multiple
+                           id="image"
+                    >
+                    <label for="image" class="form-label custom-file-label">
+                        Imágenes de producto
+                    </label>
+                </div>
+            </div>
+
+
         <div class="form-row mt-3">
             <button type="submit" class="btn btn-primary btn-lg "> Editar producto</button>
         </div>
