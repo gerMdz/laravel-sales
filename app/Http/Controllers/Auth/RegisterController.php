@@ -69,4 +69,6 @@ class RegisterController extends Controller
             'email' => $data['email'],
         ]);
     }
+
+
 }
