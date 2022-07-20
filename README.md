@@ -110,10 +110,7 @@ static::addGlobalScope(new AvailableScope);
 
 ### N+1
 ```
-protected static function booted()
-{
-static::addGlobalScope(new AvailableScope);
-}
+Entity::with('images')->get();
 ```
 
 ### Ver la consulta realizada
@@ -123,6 +120,18 @@ static::addGlobalScope(new AvailableScope);
 > En la vista
     @dd(\DB::getQueryLog()) 
     @dump($products)
+```
+
+### Crear enlaces simbólicos
+```
+> php artisan storage:link
+```
+
+### Eliminar archivos
+```
+use Illuminate\Support\Facades\File;
+
+> File::delete($path);
 ```
 
 
