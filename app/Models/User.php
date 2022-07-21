@@ -43,14 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
-
-    /**
-     *
-     * @var array
-     */
-    protected $dates = [
-        'admin_since'
+        'admin_since' => 'datetime',
     ];
 
     public function orders(): HasMany
