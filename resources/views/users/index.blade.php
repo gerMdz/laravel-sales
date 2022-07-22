@@ -28,8 +28,6 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ optional($user->admin_since)->diffForHumans()??'No'}}</td>
                         <td><i class="fa fa-cogs"></i></td>
-
-
                         <td>
                             <form method="POST" class="d-inline"
                                   action="{{route('users.admin.toggle', ['user' => $user->id])}}">

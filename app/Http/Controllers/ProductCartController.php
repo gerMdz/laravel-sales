@@ -42,7 +42,7 @@ class ProductCartController extends Controller
                 ->find($product->id)
                 ->pivot
                 ->quantity ?? 0;
-        if($product->stock < $quantity + 1){
+        if ($product->stock < $quantity + 1) {
             throw ValidationException::withMessages([
                 'producto' => "No hay suficiente stock del producto {$product->title}"
             ]);
@@ -54,7 +54,7 @@ class ProductCartController extends Controller
 
         $cookie = $this->cartService->makeCookie($cart);
 
-
+        $cart->touch();
 
         return redirect()->back()->cookie($cookie);
     }
@@ -71,7 +71,7 @@ class ProductCartController extends Controller
     {
         $cart->products()->detach($product->id);
 
-        $cookie =$this->cartService->makeCookie($cart);
+        $cookie = $this->cartService->makeCookie($cart);
 
         return redirect()->back()->cookie($cookie);
     }
